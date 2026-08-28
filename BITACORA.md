@@ -140,6 +140,7 @@ internet). El tablero se ve igual aunque la conexión de la sala sea mala.
 ## 7. Publicación
 
 - **Repositorio**: GitHub (código versionado).
+  → **https://github.com/fjaguirreb-crypto/tablero-ventas** (público)
 - **Hosting**: Vercel. Detecta `index.html` y lo sirve en la raíz, sin
   configuración.
 - **Flujo de actualización**: cada vez que se sube un cambio a GitHub
@@ -153,6 +154,28 @@ internet). El tablero se ve igual aunque la conexión de la sala sea mala.
 | `README.md` | Descripción corta del proyecto |
 | `BITACORA.md` | Este documento |
 | `.gitignore` | Lista de archivos que no se suben (basura del sistema) |
+
+### Cómo se hizo
+
+1. `git init` en la carpeta del proyecto y primer commit (registro de cambios).
+2. Se instaló la **GitHub CLI** (`gh`) con winget y se inició sesión en la
+   cuenta `fjaguirreb-crypto`.
+3. `gh repo create tablero-ventas --public --push` creó el repositorio y subió
+   el código.
+4. **Vercel** (paso en el navegador): vercel.com/new → entrar con GitHub →
+   dar acceso al repo `tablero-ventas` → Import → Deploy. Sin tocar
+   configuración (sitio estático).
+
+### Pasos para actualizar el tablero más adelante
+
+```bash
+cd "C:\Users\ejuan\OneDrive\Escritorio\tablero venta"
+git add -A
+git commit -m "describe el cambio"
+git push
+```
+
+Vercel publica el cambio solo, en menos de un minuto.
 
 ---
 
@@ -177,3 +200,37 @@ internet). El tablero se ve igual aunque la conexión de la sala sea mala.
 - "Comunas que más compran" cuenta **número de ventas**, no monto.
 - El día se calcula en horario de Chile; en el cambio de hora de invierno/
   verano el corte de medianoche podría desviarse unos minutos una vez al año.
+
+---
+
+## 10. Estado actual (27-ago-2026)
+
+| Paso | Estado |
+|---|---|
+| Acceso a la base verificado | ✅ |
+| Exploración de datos y columnas | ✅ |
+| Tablero funcionando (historial + canal en vivo + respaldo) | ✅ |
+| Probado en vivo: 17 ventas por el canal en 12 s, sin trabas | ✅ |
+| Probado: estado sin ventas, destello de venta nueva | ✅ |
+| Rediseño con el sistema visual de lanimalier.cl | ✅ |
+| Tipografías incrustadas (funciona sin internet) | ✅ |
+| Repositorio en GitHub (público) | ✅ https://github.com/fjaguirreb-crypto/tablero-ventas |
+| Publicado en Vercel | ⏳ pendiente (paso en el navegador) |
+| Verificar el tablero desde la URL pública de Vercel | ⏳ pendiente |
+
+### Registro
+
+- **27-ago-2026** — Se comprobó el acceso a la base, se exploraron las 267 mil
+  filas de `ventas` y se documentaron las columnas. Sin acceso a `orders`.
+- **27-ago-2026** — Se construyó el tablero en un solo archivo: 4 cifras,
+  3 gráficos, últimas 15 ventas, carga inicial por consulta normal, canal en
+  vivo (Realtime) y consulta de respaldo cada 20 s. Redibujo cada 0,5 s.
+- **27-ago-2026** — Se probó contra la base real: carga del día, ventas
+  entrando por el canal en vivo, destello de venta nueva y estado sin datos.
+- **27-ago-2026** — Rediseño completo con el sistema visual de lanimalier.cl
+  (Bodoni Moda + Hanken Grotesk incrustadas, fondo crudo, bronce, esquinas
+  rectas). Sin dependencias externas.
+- **27-ago-2026** — `git init`, se instaló la GitHub CLI, se creó el
+  repositorio público `tablero-ventas` y se subió el código.
+- **27-ago-2026** — Documentación en `README.md` y `BITACORA.md`.
+- **Siguiente** — Importar el repo en Vercel y verificar la URL pública.

@@ -1,32 +1,33 @@
-# Tablero de ventas en vivo — L'Animalier
+# Signal Room — L'Animalier
 
-Pantalla única para proyectar en sala: muestra las ventas de la tienda en
-tiempo real. Un solo archivo (`index.html`), sin build ni dependencias.
+Dashboard de ventas en vivo pensado para sala y demo pública: muestra las
+ventas de la tienda en tiempo real con una UI más tecnológica, construida en
+un solo archivo (`index.html`) usando React y Recharts vía CDN.
 
 ## Cómo funciona
 
-- Al abrir hace una consulta normal a la base (Supabase autoalojada) y pinta
-  el historial del día.
-- Después se conecta al canal en vivo (Realtime, evento `INSERT` sobre
-  `lanimalier.ventas`) y va sumando cada venta nueva.
-- Junta lo que llega y redibuja cada 0,5 s. Guarda solo las 15 últimas ventas.
-- Si el canal en vivo se cae, sigue con una consulta de respaldo cada 20 s y
-  lo dice en pantalla.
+- Al abrir consulta la base (Supabase autoalojada) y arma el historial del día.
+- Luego se conecta al canal en vivo (Realtime, evento `INSERT` sobre
+  `lanimalier.ventas`) y suma las ventas nuevas.
+- Amortigua el render cada `0,5 s`, mantiene solo las `15` últimas ventas y
+  reconcilia contra la base cada `20 s`.
+- Si el canal en vivo se cae, sigue funcionando con la consulta de respaldo y
+  lo muestra en el estado del tablero.
 
 ## Contenido
 
-- **Cuatro cifras**: ventas de hoy, facturación de hoy, ticket promedio,
+- **Hero operacional** con estado del sistema, reloj y señales rápidas.
+- **Cuatro métricas clave**: ventas de hoy, facturación, ticket promedio,
   unidades vendidas.
-- **Gráficos**: facturación por hora, cinco comunas que más compran, reparto
-  por fuente de tráfico.
-- **Últimas quince ventas**, actualizándose solas.
+- **Tres visualizaciones Recharts**: facturación por hora, comunas top y mix
+  de fuentes.
+- **Feed de últimas quince ventas**, actualizándose solo.
 
 ## Diseño
 
-Alineado con el sistema visual de [lanimalier.cl](https://lanimalier.cl):
-tipografías Bodoni Moda y Hanken Grotesk (incrustadas en el archivo), fondo
-crudo, esquinas rectas, bronce como acento. Funciona sin conexión a fuentes
-externas.
+Look frontier 2026: fondo oscuro atmosférico, paneles glass, glow controlado,
+tipografía más expresiva y una jerarquía visual pensada para lectura a
+distancia.
 
 ## Datos
 
